@@ -1,29 +1,18 @@
 <template>
   <div class="album-item">
-      <!-- <img src="" alt=""> -->
-      <h3>Titolo</h3>
-      <h4>Artista</h4>
-      <h5>Data</h5>
+      <img class="image-fluid" :src="poster"> 
+      <h3>{{name}}</h3>
+      <h4>{{author}}</h4>
+      <h5>{{year}}</h5>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+
 
 export default {
   name: 'Albums',
-  data: function() {
-  return {
-    albumsList: [],
-  }
-  },
-  mounted: function() {
-    axios.get('https://flynn.boolean.careers/exercises/api/array/music')
-    .then((response) => {
-      console.log(response.data.response)
-      this.albumsList = [...response.data.response];
-    })
-  }
+  props: ['name', 'author', 'year', 'poster'],
 }
 
 </script>
@@ -33,9 +22,14 @@ export default {
 
 .album-item {
   border: 1px solid red;
+  background-color: $headerCardBackground;
   color: white;
+  text-align: center;
 
-  width: 100%;
-  height: 300px;
+  height: 330px;
+
+  img {
+    width: 80%;
+  }
 }
 </style>
