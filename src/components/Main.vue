@@ -2,8 +2,8 @@
     <section class="d-flex justify-content-center align-items-center">
         <div class="container my_albums-container">
             <div class="row row-cols-5">
-                <div class="my_album col mt-5 mb-5" v-for="album in albumsList" :key="album.id">
-                    <Albums :name="album.title" :author="album.author" :year="album.year" :poster="album.poster"/>
+                <div v-for="album in albumsList" :key="album.id" class="my_album col mt-5 mb-5">
+                    <Albums :entireAlbum="album"/>
                 </div>
             </div>
         </div>
@@ -39,7 +39,6 @@ export default {
 @import '../style/variables.scss';
 
 section {
-    height: calc(100vh - 70px);
     background-color: $pageBackground;
 
 }

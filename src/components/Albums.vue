@@ -1,9 +1,12 @@
 <template>
   <div class="album-item">
-      <img class="image-fluid" :src="poster"> 
-      <h3>{{name}}</h3>
-      <h4>{{author}}</h4>
-      <h5>{{year}}</h5>
+      <div class="image-container">
+        <img class="image-fluid" :src="entireAlbum.poster"> 
+      </div>
+      <h3>{{entireAlbum.name}}</h3>
+      <h2>{{entireAlbum.title}}</h2>
+      <h4>{{entireAlbum.author}}</h4>
+      <h5>{{entireAlbum.year}}</h5>
   </div>
 </template>
 
@@ -12,7 +15,7 @@
 
 export default {
   name: 'Albums',
-  props: ['name', 'author', 'year', 'poster'],
+  props: ['entireAlbum'],
 }
 
 </script>
@@ -21,15 +24,18 @@ export default {
 @import '../style/variables.scss';
 
 .album-item {
-  border: 1px solid red;
   background-color: $headerCardBackground;
   color: white;
   text-align: center;
 
-  height: 330px;
+  min-height: 400px;
 
-  img {
-    width: 80%;
+  .image-container {
+    width: 100%;
+
+    img {
+      width: 80%;
+    }
   }
 }
 </style>
