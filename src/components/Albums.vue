@@ -1,7 +1,7 @@
 <template>
   <div class="album-item">
       <div class="image-container">
-        <img class="image-fluid" :src="entireAlbum.poster"> 
+        <img :src="entireAlbum.poster" :alt="entireAlbum.title"> 
       </div>
       <h3>{{entireAlbum.name}}</h3>
       <h2>{{entireAlbum.title}}</h2>
