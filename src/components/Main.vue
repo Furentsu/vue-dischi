@@ -4,10 +4,10 @@
             <div class="row row-cols-5">
                 
                 <div class="col-12 text-center text-white">
-                    <FilteringComp :filteredGenres="genresList" />
+                    <FilteringComp @getGenres='getGenres' :filteredGenres="genresList" />
                 </div>
 
-                <div v-for="album in albumsList" :key="album.id" class="my_album col mt-5 mb-5">
+                <div v-for="(album,index) in filteredAlbums" :key="index" class="my_album col mt-5 mb-5">
                     <Albums :entireAlbum="album"/>
                 </div>
             </div>
@@ -31,8 +31,25 @@ export default {
     return {
             albumsList: [],
             genresList: [],
+            needle: '',
+            filteredAlbums: [],
         }
-  },
+    },
+    methods: {
+        getGenres(needle) {
+            this.needle = needle;
+            this.filteredAlbums = [];
+            this.selectedAlbums();
+        },
+
+        selectedAlbums() {
+            this.albumsList.forEach((item) => {
+                if (item.genre == this.needle && !this.filteredAlbums.includes(item)) {
+                    this.filteredAlbums.push(item);
+                }
+             })
+        },
+    },
     mounted: function() {
         axios.get('https://flynn.boolean.careers/exercises/api/array/music')
         .then((response) => {
@@ -40,11 +57,10 @@ export default {
         
         this.albumsList.forEach((item) => {
             if (!this.genresList.includes(item.genre)) {
-                this.genresList.push(item.genre)
+                this.genresList.push(item.genre);
             }
         })
-        console.log(this.albumsList)
-        console.log(this.genresList)
+
     })
   }
 }
@@ -54,8 +70,7 @@ export default {
 @import '../style/variables.scss';
 
 section {
+    height: calc(100vh - 70px);
     background-color: $pageBackground;
-
 }
-
 </style>
