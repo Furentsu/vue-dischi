@@ -39,12 +39,13 @@ export default {
         getGenres(needle) {
             this.needle = needle;
             this.filteredAlbums = [];
+
             this.selectedAlbums();
         },
 
         selectedAlbums() {
             this.albumsList.forEach((item) => {
-                if (item.genre == this.needle && !this.filteredAlbums.includes(item)) {
+                if (item.genre == this.needle) {
                     this.filteredAlbums.push(item);
                 }
              })
