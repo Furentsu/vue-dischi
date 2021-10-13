@@ -7,7 +7,7 @@
                     <FilteringComp @getGenres='getGenres' :filteredGenres="genresList" />
                 </div>
 
-                <div v-for="(album,index) in filteredAlbums" :key="index" class="my_album col mt-5 mb-5">
+                <div v-for="(album,index) in filteredAlbums" :key="index" class="col mt-5 mb-5">
                     <Albums :entireAlbum="album"/>
                 </div>
             </div>
